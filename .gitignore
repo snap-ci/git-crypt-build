@@ -1,0 +1,6 @@
+.idea/
+/src/
+/downloads/
+/.bundle/
+/bin/
+Gemfile.lock
