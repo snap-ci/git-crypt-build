@@ -38,7 +38,7 @@ mkdir_p jailed_root
  sh("make all")
  sh("sudo make install")
  sh(%Q{
- bundle exec fpm -s dir -t #{distro} --name git-crypt -a x86_64 --version "0.5.0" -C #{jailed_root/git-crypt-master} --verbose #{fpm_opts} --maintainer snap-ci@thoughtworks.com --vendor snap-ci@thoughtworks.com --url http://snap-ci.com --description "#{description_string}" --license 'Git-crypt' .
+ bundle exec fpm -s dir -t #{distro} --name git-crypt -a x86_64 --version "0.5.0" -C #{jailed_root} --verbose #{fpm_opts} --maintainer snap-ci@thoughtworks.com --vendor snap-ci@thoughtworks.com --url http://snap-ci.com --description "#{description_string}" --license 'Git-crypt' .
  })
  end
 end
