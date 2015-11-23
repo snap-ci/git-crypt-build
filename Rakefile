@@ -25,7 +25,7 @@ task :default do
  end
  sh "unzip /tmp/master.zip"
  cd 'git-crypt-master' do
- make all
- make install
+ sh("make all")
+ sh("make install")
  end
 end
