@@ -31,7 +31,7 @@ mkdir_p jailed_root
  sh ("unzip master.zip")
  end
  cd jailed_root do
- cd git-crypt-master
+ cd "git-crypt-master"
  sh("make all")
  sh("sudo make install")
  end
