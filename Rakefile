@@ -20,7 +20,7 @@ end
 
 desc 'build git-crypt'
 task :default do
- cd '/tmp' do
+ cd 'src' do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
  end
  sh "unzip /tmp/master.zip"
@@ -28,7 +28,8 @@ task :default do
  sh("make all")
  rm_rf jailed_root
  mkdir_p jailed_root
- cd 'src' do
+ cd 'src/git-crypt-master' do
  sh("sudo make install")
+ end
  end
 end
