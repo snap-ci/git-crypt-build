@@ -39,7 +39,7 @@ prefix = File.expand_path('/usr/local', __FILE__)
  cd jailed_root do
  cd "git-crypt-master"
  sh("make all")
- sh("sudo make install --PREFIX=#{prefix}")
+ sh("sudo make install PREFIX=#{prefix}")
  sh(%Q{
  bundle exec fpm -s dir -t #{distro} --name git-crypt -a x86_64 --version "0.5.0" -C #{jailed_root} --verbose #{fpm_opts} --maintainer snap-ci@thoughtworks.com --vendor snap-ci@thoughtworks.com --url http://snap-ci.com --description "#{description_string}" --license 'Git-crypt' .
  })
