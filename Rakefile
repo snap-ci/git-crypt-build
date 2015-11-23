@@ -20,16 +20,16 @@ end
 
 desc 'build git-crypt'
 task :default do
- cd '/tmp' do
+jailed_root = File.expand_path('../jailed-root', __FILE__)
+rm_rf jailed_root
+mkdir_p jailed_root
+
+ cd ‘jailed_root' do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
  end
- sh "unzip /tmp/master.zip"
+ sh "unzip jailed_root/master.zip"
  cd 'git-crypt-master' do
  sh("make all")
- jailed_root = File.expand_path('../jailed-root', __FILE__)
- rm_rf jailed_root
- mkdir_p jailed_root
- cd '/tmp/git-crypt-master' do
  sh("sudo make install")
  end
  end
