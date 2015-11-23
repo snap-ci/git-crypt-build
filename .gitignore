@@ -4,3 +4,6 @@
 /.bundle/
 /bin/
 Gemfile.lock
+jailed-root
+pkg
+src
