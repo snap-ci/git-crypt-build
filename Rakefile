@@ -5,6 +5,9 @@ require 'rake/clean'
 
 distro = nil
 fpm_opts = ""
+description_string = "git-crypt is used to encrypt the contents in VCS"
+release = "0.5.0"
+
 
 if File.exist?('/etc/system-release') && File.read('/etc/redhat-release') =~ /centos|redhat|fedora|amazon/i
   distro = 'rpm'
