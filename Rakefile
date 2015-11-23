@@ -40,5 +40,7 @@ mkdir_p jailed_root
  sh(%Q{
  bundle exec fpm -s dir -t #{distro} --name git-crypt -a x86_64 --version "0.5.0" -C #{jailed_root} --verbose #{fpm_opts} --maintainer snap-ci@thoughtworks.com --vendor snap-ci@thoughtworks.com --url http://snap-ci.com --description "#{description_string}" --license 'Git-crypt' .
  })
+ mkdir_p pkg
+ sh("mv git-crypt-0.5.0-1.x86_64.rpm pkg")
  end
 end
