@@ -21,6 +21,6 @@ end
 desc 'build git-crypt'
 task :default do
  cd 'downloads' do
-    sh("curl --fail --location https://github.com/AGWA/git-crypt/archive/master.zip
+    sh("curl --fail --location https://github.com/AGWA/git-crypt/archive/master.zip")
  end
 end
