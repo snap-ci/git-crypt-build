@@ -24,7 +24,7 @@ task :default do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
  end
  sh "unzip /tmp/master.zip"
- cd '/tmp/git-crypt-master' do
+ cd 'git-crypt-master' do
  make all
  make install
  end
