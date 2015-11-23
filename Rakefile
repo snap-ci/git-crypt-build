@@ -28,7 +28,7 @@ rm_rf jailed_root
 mkdir_p jailed_root
 pkg = File.expand_path('../pkg', __FILE__)
 mkdir_p pkg
-prefix = "/opt/local/git-crypt/bin"
+prefix = "/opt/local/git-crypt"
 
  cd jailed_root do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
