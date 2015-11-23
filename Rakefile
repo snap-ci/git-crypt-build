@@ -23,4 +23,5 @@ task :default do
  cd '/tmp' do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
  end
+ sh "unzip /tmp/master.zip"
 end
