@@ -26,6 +26,7 @@ task :default do
  sh "unzip /tmp/master.zip"
  cd 'git-crypt-master' do
  sh("make all")
+ jailed_root = File.expand_path('../jailed-root', __FILE__)
  rm_rf jailed_root
  mkdir_p jailed_root
  cd '/tmp/git-crypt-master' do
