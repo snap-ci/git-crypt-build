@@ -23,9 +23,4 @@ task :default do
  cd 'downloads' do
     sh("curl --fail --location https://github.com/AGWA/git-crypt/archive/master.zip
  end
-#   sh "unzip downloads/master.zip"
-#   cd "downloads/git-crypt-master" do
-#   make all
-#   make install --PREFIX=/usr/local/
-# end  
 end
