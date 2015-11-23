@@ -6,7 +6,7 @@ require 'rake/clean'
 distro = nil
 fpm_opts = ""
 description_string = "git-crypt is used to encrypt the contents in VCS"
-release = "0.5.0"
+version = "0.5.0"
 
 
 if File.exist?('/etc/system-release') && File.read('/etc/redhat-release') =~ /centos|redhat|fedora|amazon/i
@@ -43,8 +43,8 @@ task :default do
     sh("mkdir -p jailed_root/#{prefix}")
     sh("sudo make install PREFIX=#{prefix}")
     sh(%Q{
- bundle exec fpm -s dir -t #{distro} --name git-crypt -a x86_64 --version "0.5.0" -C #{jailed_root} --verbose #{fpm_opts} --maintainer snap-ci@thoughtworks.com --vendor snap-ci@thoughtworks.com --url http://snap-ci.com --description "#{description_string}" --iteration #{release} --license 'Git-crypt' .
+ bundle exec fpm -s dir -t #{distro} --name git-crypt -a x86_64 --version "#{version}" -C #{jailed_root} --verbose #{fpm_opts} --maintainer snap-ci@thoughtworks.com --vendor snap-ci@thoughtworks.com --url http://snap-ci.com --description "#{description_string}" --iteration #{release} --license 'Git-crypt' .
        })
-    sh("mv git-crypt-0.5.0-#{release}.x86_64.rpm ../../pkg")
+    sh("mv git-crypt-#{version}-#{release}.x86_64.rpm ../../pkg")
   end
 end
