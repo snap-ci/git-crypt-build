@@ -32,5 +32,4 @@ mkdir_p jailed_root
  sh("make all")
  sh("sudo make install")
  end
- end
 end
