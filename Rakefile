@@ -27,7 +27,7 @@ mkdir_p jailed_root
  cd jailed_root do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
  end
- sh "unzip master.zip"
+ sh "unzip jailed_root/master.zip"
  cd "git-crypt-master" do
  sh("make all")
  sh("sudo make install")
