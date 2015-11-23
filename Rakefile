@@ -23,28 +23,28 @@ end
 
 desc 'build git-crypt'
 task :default do
-jailed_root = File.expand_path('../jailed-root', __FILE__)
-rm_rf jailed_root
-mkdir_p jailed_root
-pkg = File.expand_path('../pkg', __FILE__)
-mkdir_p pkg
-prefix = "/opt/local/git-crypt"
-release = Time.now.utc.strftime('%Y%m%d%H%M%S')
+  jailed_root = File.expand_path('../jailed-root', __FILE__)
+  rm_rf jailed_root
+  mkdir_p jailed_root
+  pkg = File.expand_path('../pkg', __FILE__)
+  mkdir_p pkg
+  prefix = "/opt/local/git-crypt"
+  release = Time.now.utc.strftime('%Y%m%d%H%M%S')
 
- cd jailed_root do
+  cd jailed_root do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
- end
- cd jailed_root do
- sh ("unzip master.zip")
- end
- cd jailed_root do
- cd "git-crypt-master"
- sh("make all")
- sh("mkdir -p jailed_root/#{prefix}")
- sh("sudo make install PREFIX=#{prefix}")
- sh(%Q{
+  end
+  cd jailed_root do
+    sh ("unzip master.zip")
+  end
+  cd jailed_root do
+    cd "git-crypt-master"
+    sh("make all")
+    sh("mkdir -p jailed_root/#{prefix}")
+    sh("sudo make install PREFIX=#{prefix}")
+    sh(%Q{
  bundle exec fpm -s dir -t #{distro} --name git-crypt -a x86_64 --version "0.5.0" -C #{jailed_root} --verbose #{fpm_opts} --maintainer snap-ci@thoughtworks.com --vendor snap-ci@thoughtworks.com --url http://snap-ci.com --description "#{description_string}" --iteration #{release} --license 'Git-crypt' .
- })
- sh("mv git-crypt-0.5.0-#{release}.x86_64.rpm ../../pkg")
- end
+       })
+    sh("mv git-crypt-0.5.0-#{release}.x86_64.rpm ../../pkg")
+  end
 end
