@@ -45,3 +45,6 @@ task :fpm do
         })
   end
 end
+desc "build and package git-crypt"
+  task :all => [:fpm]
+end
