@@ -34,17 +34,8 @@ mkdir_p jailed_root
  cd "git-crypt-master"
  sh("make all")
  sh("sudo make install")
+ sh(%Q{
+ bundle exec fpm -s dir -t #{distro} --name git-crypt -a x86_64 --version "0.5.0" -C #{jailed_root} --verbose #{fpm_opts} --maintainer snap-ci@thoughtworks.com --vendor snap-ci@thoughtworks.com --url http://snap-ci.com --description "#{description_string}" --iteration #{release} --license 'Git-crypt' .
+ })
  end
-end
-
-task :fpm do
- cd jailed_root do
-  cd "git-crypt-master"
-   sh(%Q{
-      bundle exec fpm -s dir -t #{distro} --name git-crypt -a x86_64 --version "0.5.0" -C #{jailed_root} --verbose #{fpm_opts} --maintainer snap-ci@thoughtworks.com --vendor snap-ci@thoughtworks.com --url http://snap-ci.com --description "#{description_string}" --iteration #{release} --license 'Git-crypt' .
-        })
-  end
-end
-desc "build and package git-crypt"
-  task :all => [:fpm]
 end
