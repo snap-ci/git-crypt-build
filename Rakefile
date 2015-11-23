@@ -24,7 +24,7 @@ jailed_root = File.expand_path('../jailed-root', __FILE__)
 rm_rf jailed_root
 mkdir_p jailed_root
 
- cd ‘jailed_root' do
+ cd 'jailed_root' do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
  end
  sh "unzip jailed_root/master.zip"
