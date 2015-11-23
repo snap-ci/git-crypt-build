@@ -26,6 +26,6 @@ task :default do
  sh "unzip /tmp/master.zip"
  cd '/tmp/git-crypt-master' do
  make all
- make install --prefix=/usr/local
+ make install
  end
 end
