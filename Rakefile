@@ -22,22 +22,21 @@ unless distro
 end
 
 src = File.expand_path("../src", __FILE__)
-
+jailed_root = File.expand_path('../jailed-root', __FILE__)
+pkg = File.expand_path('../pkg', __FILE__)
+prefix = "/opt/local/git-crypt"
+release = Time.now.utc.strftime('%Y%m%d%H%M%S')
 
 desc 'build git-crypt'
 task :prepare do
-  jailed_root = File.expand_path('../jailed-root', __FILE__)
   rm_rf jailed_root
   mkdir_p jailed_root
-  pkg = File.expand_path('../pkg', __FILE__)
+  mkdir_p src
   mkdir_p pkg
-  prefix = "/opt/local/git-crypt"
-  release = Time.now.utc.strftime('%Y%m%d%H%M%S')
 end 
  
  desc 'download the git-crypt zip file' 
  task :download do
-  mkdir_p src
   cd src do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
   end
@@ -69,4 +68,4 @@ end
   rm_rf src
  end 
 
-task :default => [:prepare, :download, :unzip]
+task :default => [:prepare, :download, :unzip, :make]
