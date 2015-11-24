@@ -21,6 +21,9 @@ unless distro
   $stderr.puts "Don't know what distro I'm running on -- not sure if I can build!"
 end
 
+src = File.expand_path("../src", __FILE__)
+
+
 desc 'build git-crypt'
 task :prepare do
   jailed_root = File.expand_path('../jailed-root', __FILE__)
@@ -34,7 +37,6 @@ end
  
  desc 'download the git-crypt zip file' 
  task :download do
-  src = File.expand_path("../src", __FILE__)
   mkdir_p src
   cd src do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
