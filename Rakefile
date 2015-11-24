@@ -32,7 +32,8 @@ task :default do
   mkdir_p pkg
   prefix = "/opt/local/git-crypt"
   release = Time.now.utc.strftime('%Y%m%d%H%M%S')
-
+ end 
+  
  task :download do
   cd src do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
@@ -57,7 +58,6 @@ task :default do
     sh("mv git-crypt-#{version}-#{release}.x86_64.rpm ../../pkg")
   end
  end 
-end
  
  task :clean do 
   rm_rf src
