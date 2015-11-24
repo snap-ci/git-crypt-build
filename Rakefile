@@ -67,4 +67,4 @@ end
   rm_rf src
  end 
 
-task :default => [:prepare, :download]
+task :default => [:prepare, :download, :unzip]
