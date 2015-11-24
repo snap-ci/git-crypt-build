@@ -24,7 +24,6 @@ end
 desc 'build git-crypt'
 task :prepare do
   jailed_root = File.expand_path('../jailed-root', __FILE__)
-  src = File.expand_path("../src", __FILE__)
   rm_rf jailed_root
   mkdir_p jailed_root
   mkdir_p src
@@ -36,6 +35,7 @@ end
  
  desc 'download the git-crypt zip file' 
  task :download do
+  src = File.expand_path("../src", __FILE__)
   cd src do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
   end
