@@ -32,20 +32,23 @@ task :default do
   mkdir_p pkg
   prefix = "/opt/local/git-crypt"
   release = Time.now.utc.strftime('%Y%m%d%H%M%S')
- end 
-  
+end 
+ 
+ desc 'download the git-crypt zip file' 
  task :download do
   cd src do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
   end
  end 
-
+ 
+ desc 'unzip the git-crypt master.zip file'
  task :unzip do
   cd src do
     sh ("unzip master.zip")
   end
  end 
  
+ desc 'make, make install and create fpm'
  task :make do
   cd src do
     cd "git-crypt-master"
@@ -59,8 +62,9 @@ task :default do
   end
  end 
  
+ desc 'clean up the src folder'
  task :clean do 
   rm_rf src
  end 
 
-task :all => [:default, :clean, :download, :unzip, :make]
+task :all => [:default, :download, :unzip, :make, :clean]
