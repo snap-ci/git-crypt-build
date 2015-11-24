@@ -33,12 +33,19 @@ task :default do
   prefix = "/opt/local/git-crypt"
   release = Time.now.utc.strftime('%Y%m%d%H%M%S')
 
+ task :download do
   cd src do
     sh("wget https://github.com/AGWA/git-crypt/archive/master.zip")
   end
+ end 
+
+ task :unzip do
   cd src do
     sh ("unzip master.zip")
   end
+ end 
+ 
+ task :make do
   cd src do
     cd "git-crypt-master"
     sh("make all")
@@ -48,6 +55,12 @@ task :default do
  bundle exec fpm -s dir -t #{distro} --name git-crypt -a x86_64 --version "#{version}" -C #{jailed_root} --verbose #{fpm_opts} --maintainer snap-ci@thoughtworks.com --vendor snap-ci@thoughtworks.com --url https://snap-ci.com --description "#{description_string}" --iteration #{release} --license 'Git-crypt' .
        })
     sh("mv git-crypt-#{version}-#{release}.x86_64.rpm ../../pkg")
-    rm_rf src
   end
+ end 
 end
+ 
+ task :clean do 
+  rm_rf src
+ end 
+
+task :all => [:clean, :download, :unzip, :make]
