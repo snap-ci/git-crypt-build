@@ -22,7 +22,7 @@ unless distro
 end
 
 desc 'build git-crypt'
-task :default do
+task :prepare do
   jailed_root = File.expand_path('../jailed-root', __FILE__)
   src = File.expand_path("../src", __FILE__)
   rm_rf jailed_root
@@ -67,4 +67,4 @@ end
   rm_rf src
  end 
 
-task :all => [:default, :download, :unzip, :make, :clean]
+task :default => [:prepare, :download, :unzip, :make, :clean]
